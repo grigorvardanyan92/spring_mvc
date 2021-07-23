@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title th:text="#{blog.edit.title}">Edit blog</title>
+</head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<div class="nav-scroller bg-body shadow-sm">
+    <nav class="nav nav-underline" aria-label="Secondary navigation">
+    </nav>
+</div>
+<div class="container">
+    <form method="post" th:action="@{/blogs/{id}/edit(id = ${blog.id})}" th:object="${blog}">
+        <div class="mb-3">
+            <label for="header" class="form-label" th:text="#{blog.new.header}">Header</label>
+            <input type="text" class="form-control" id="header" th:value="${blog.header}" th:field="*{header}">
+        </div>
+        <div class="mb-3">
+            <label for="short" class="form-label" th:text="#{blog.new.short}">Short introduction</label>
+            <textarea class="form-control" id="short" rows="3" th:text="${blog.intro}" th:field="*{intro}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="blog_text" class="form-label" th:text="#{blog.new.text}">Blog text</label>
+            <textarea class="form-control" id="blog_text" rows="3" th:text="${blog.text}" th:field="*{text}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="#{blog.edit.button}">Save</button>
+    </form>
+</div>
+</body>
+</html>
